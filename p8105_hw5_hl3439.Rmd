@@ -125,16 +125,10 @@ homicide_df =
 
 
 
-## Problem 2 ideas ...
+## Problem 2 
 
 
-import one dataset 
-
-```{r}
-data_1 = read_csv("lda_data/con_01.csv")
-```
-
-```{r, error = TRUE}
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
 path_df = 
   tibble(
     path = list.files("lda_data"),
@@ -159,10 +153,14 @@ path_df =
 spaghetti = path_df %>% 
   group_by(subject_id, week) %>% 
   ggplot(aes(x = week, y = data, color = arm)) + 
-    geom_path() + 
+    geom_path() 
     theme(legend.position = "bottom")
 
 spaghetti
 ```
+
+In general, data collected from the experiment arm start to increase over time, while data collected from the control arm are relatively stable over time.
+
+# Problem 3
 
 
