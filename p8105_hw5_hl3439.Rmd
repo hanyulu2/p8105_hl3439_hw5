@@ -6,6 +6,7 @@ output: github_document
 
 ```{r setup, include = FALSE}
 library(tidyverse)
+library(ggplot2)
 
 knitr::opts_chunk$set(
   fig.width = 6,
@@ -140,9 +141,28 @@ path_df =
   ) %>% 
   mutate(
     path = str_c("lda_data/", path),
-    data = map(.............))
+    data = map(path, read_csv),
+    path = gsub("lda_data/", "", path),
+    path = gsub(".csv","", path)) %>% 
+  unnest(data) %>% 
+  separate(path, into = c("arm","subject_id"), "_") %>% 
+  pivot_longer(
+    week_1:week_8,
+    names_to = "week",
+    values_to = "data"
+  ) %>% 
+  mutate(
+    week = gsub("week_","", week),
+    week = as.numeric(week)
+  )
 
-read_csv(path_df$path[[1]])
+spaghetti = path_df %>% 
+  group_by(subject_id, week) %>% 
+  ggplot(aes(x = week, y = data, color = arm)) + 
+    geom_path() + 
+    theme(legend.position = "bottom")
+
+spaghetti
 ```
 
 
