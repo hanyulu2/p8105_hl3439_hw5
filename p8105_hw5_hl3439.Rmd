@@ -214,3 +214,33 @@ plot_1 =
 plot_1
 ```
 
+```{r}
+plot_2 =
+  samp_results %>% 
+  group_by(mu) %>% 
+  summarize(
+    mean = mean(estimate)
+  ) 
+ 
+
+plot_3 =
+  samp_results %>% 
+  filter(decision == TRUE) %>% 
+  group_by(mu) %>% 
+  summarize(
+    mean_reject = mean(estimate)
+  )
+
+plot_merge = left_join(plot_2, plot_3, by = "mu")
+
+plot_second = 
+  ggplot(data=plot_merge)+
+  geom_line(mapping=aes(y=mean,x= mu,color="red"),size=1) +
+  geom_point(mapping=aes(y=mean,x= mu,color="red"),size=1) +
+  geom_line(mapping=aes(y=mean_reject,x= mu,color="black"),size=1) +
+  geom_point(mapping=aes(y=mean_reject,x= mu,color="black"),size=1) +
+  scale_color_discrete(name = "mean", labels = c("mean_reject", "mean"))
+
+plot_second
+```
+
