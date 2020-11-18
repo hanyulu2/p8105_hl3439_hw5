@@ -183,10 +183,6 @@ sample = function(mu){
   return(samp_result)
 }
 
-output = list()
-
-output = rerun(5000, sample(0))
-output = output %>% bind_rows()
 
 set.seed(996)
 
