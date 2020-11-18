@@ -163,7 +163,7 @@ In general, data collected from the experiment arm start to increase over time, 
 
 # Problem 3
 
-```{r}
+```{r cache = TRUE}
 
 sample = function(mu){
   samp_data = tibble(
