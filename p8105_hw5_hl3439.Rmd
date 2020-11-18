@@ -128,7 +128,7 @@ homicide_df =
 ## Problem 2 
 
 
-```{r, warning = FALSE, message = FALSE, echo = FALSE}
+```{r, warning = FALSE, message = FALSE, echo = FALSE, fig.width=12, fig.height=6}
 path_df = 
   tibble(
     path = list.files("lda_data"),
@@ -196,7 +196,7 @@ for (i in 0:6) {
 samp_results = bind_rows(output)
 ```
 
-```{r echo =FALSE}
+```{r echo =FALSE, fig.width=12, fig.height=6}
 plot_1 = 
   samp_results %>% 
   group_by(mu) %>% 
@@ -216,7 +216,7 @@ plot_1
 
 As the difference between true mean and mean of the null hypothesis increases, the probability that a false null hypothesis is rejected increases.  In other words, as the effect size increases, power also increase.
 
-```{r echo = FALSE}
+```{r echo = FALSE, fig.width=12, fig.height=6}
 plot_2 =
   samp_results %>% 
   group_by(mu) %>% 
