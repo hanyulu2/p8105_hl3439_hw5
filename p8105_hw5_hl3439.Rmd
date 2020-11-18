@@ -196,7 +196,7 @@ for (i in 0:6) {
 samp_results = bind_rows(output)
 ```
 
-```{r}
+```{r echo =FALSE}
 plot_1 = 
   samp_results %>% 
   group_by(mu) %>% 
@@ -214,7 +214,9 @@ plot_1 =
 plot_1
 ```
 
-```{r}
+As the difference between true mean and mean of the null hypothesis increases, the probability that a false null hypothesis is rejected increases.  In other words, as the effect size increases, power also increase.
+
+```{r echo = FALSE}
 plot_2 =
   samp_results %>% 
   group_by(mu) %>% 
@@ -244,3 +246,4 @@ plot_second =
 plot_second
 ```
 
+The sample average of μ̂  across tests for which the null is rejected is approximately equal to the true value of μ for μ = 0, 4, 5, 6, but is different from μ for  μ = 1, 2, 3.  The reason is that samples not rejected for μ = 1, 2, 3 account for a larger proportion of total samples.  Consequently, as true means get closer to the hypothetical mean, means of samples rejected are more likely to deviate from the true mean, which result in a large difference for the points of μ = 1, 2. On the other hand, since the proportion of samples rejected for μ = 4, 5, 6 is close to 1, their means of estimates are close to their true mean.  The proportion of samples rejected for μ = 0 is about 0.05, the mean estimates are errors that follow a normal distribution with mean 0.
